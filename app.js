@@ -21,17 +21,17 @@ app.use(express.static('public'));
 //Template Engine
 app.use(expressEjsLayouts);
 app.set('layout','./layouts/main');
+
 app.set('view engine','ejs');
 
 //Home
-app.get('/',(req,res)=>{
-    const locals ={
-        title:'NodeJs',
-        description:'Free User NodeJs Management System'
-    }
-    //res.send('Hello World')
-    res.render('index',locals);
+app.use('/',require('./server/routes/customer'));
+
+//Handle 404
+app.get('*',(req,res)=>{
+    res.status(404).render('404');
 });
+
 
 app.listen(PORT,()=>{
     console.log(`App listening on port ${PORT}`);
