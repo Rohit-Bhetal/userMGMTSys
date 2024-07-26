@@ -28,7 +28,33 @@
     <div class="row form-grou mb-4">
         <div class="col">
             <label for="FirstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" value="" placeholder="First Name">
+            <input type="text" class="form-control" id="FirstName" name="FirstName" value="" placeholder="First Name" required>
+            
+        </div>
+        <div class="col">
+            <label for="LastName">Last Name</label>
+            <input type="text" class="form-control" id="LastName" name="LastName" value="" placeholder="First Name" required>
+
         </div>
     </div>
+    <div class="row form-grou mb-4">
+        <div class="col">
+            <label for="tel">Telephone</label>
+            <input type="number" class="form-control" id="tel" name="tel" value="" placeholder="Telephone" required>
+            
+        </div>
+        <div class="col">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="" placeholder="Email" required>
+
+        </div>
+    </div>
+    <div class="form-grou mb-4">
+        <label for="details">Customer Details</label>
+        <textarea class="form-control" name="details" cols="30" rows="12" id="details" placeholder="Customer Details"></textarea>
+    </div>
+    <div class="form-grou mb-4">
+        <button type="submit" class="btn btn-primary ">Add Customer</button>
+    </div>
+    
 </form>

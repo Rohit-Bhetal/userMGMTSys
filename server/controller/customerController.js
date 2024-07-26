@@ -25,6 +25,19 @@ exports.addCustomer =async (req,res)=>{
         description:'Free User NodeJs Management System'
     }
     //res.send('Hello World')
-    res.render('pages/add');
+    res.render('pages/add',locals);
+    
+}
+
+//Post Create New Customer
+exports.postCustomer =async (req,res)=>{
+
+    console.log(req.body);
+    const locals ={
+        title:'Add New Customer',
+        description:'Free User NodeJs Management System'
+    }
+    //res.send('Hello World')
+    res.render('pages/add',locals);
     
 }
