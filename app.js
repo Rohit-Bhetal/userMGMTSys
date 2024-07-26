@@ -2,11 +2,14 @@ require('dotenv').config();
 
 const express = require('express');
 const expressEjsLayouts = require('express-ejs-layouts');
-
+const connectDB =require('./server/config/db');
 
 const app = express();
 const PORT = 3030;
 
+
+//COnnect to Database
+connectDB(); 
 app.use(express.urlencoded({
     extended:true
 }));
