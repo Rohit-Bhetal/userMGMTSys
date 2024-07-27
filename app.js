@@ -6,6 +6,8 @@ const connectDB =require('./server/config/db');
 
 const app = express();
 const PORT = 3030;
+const {flash} = require('express-flash-message');
+const session =require('express-session');
 
 
 //COnnect to Database
@@ -19,6 +21,24 @@ app.use(express.json());
 //static files
 
 app.use(express.static('public'));
+
+//Express Session
+app.use(
+    session({
+        secret:'secret',
+        resave: false,
+        saveUninitialized:true,
+        cookie:{
+            maxAge:1000*60*60*24*7 // 1 week
+        }
+    })
+);
+
+app.use(
+    flash({
+    
+    })
+)
 
 
 //Template Engine
