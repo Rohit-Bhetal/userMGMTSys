@@ -6,16 +6,48 @@ GET/
 Homepage
 */
 
-exports.homepage =async (req,res)=>{
+ /* exports.homepage =async (req,res)=>{
+    const messages = await req.consumeFlash('info')
     const locals ={
         title:'NodeJs',
         description:'Free User NodeJs Management System'
     }
-    //res.send('Hello World')
-    res.render('index',locals);
-    
-}
 
+    try {
+        const customers = await Customer.find({}).limit(22);
+        res.render('index',{locals,messages,customers});
+    } catch (error) {
+        
+    }
+    //res.send('Hello World')
+    
+    
+}  */
+    exports.homepage =async (req,res)=>{
+        const messages = await req.consumeFlash('info')
+        const locals ={
+            title:'NodeJs',
+            description:'Free User NodeJs Management System'
+        }
+        let perpage = 12;
+        let page = req.query.page || 1
+        try {
+            const customers = await Customer.aggregate([{
+                $sort:{
+                    updatedAt:-1
+                }
+            }]).skip(perpage*page-perpage).limit(perpage).exec();
+            const count = await Customer.countDocuments();
+            res.render('index',{locals,messages,customers,
+                current:page,page:Math.ceil(count/perpage)
+            });
+        } catch (error) {
+            console.log(error);
+        }
+        //res.send('Hello World')
+        
+        
+    }
 
 /*
 GET  /
@@ -23,6 +55,7 @@ NEW Customer Form
 
 */
 exports.addCustomer =async (req,res)=>{
+
     const locals ={
         title:'NodeJs',
         description:'Free User NodeJs Management System'
@@ -50,7 +83,7 @@ exports.postCustomer =async (req,res)=>{
     }
     try {
         await Customer.create(newCustomer);
-        await req.flash('')
+        await req.flash('info','New Customer Added!')
         //res.send('Hello World')
         res.redirect('/');
 

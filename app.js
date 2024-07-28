@@ -36,9 +36,10 @@ app.use(
 
 app.use(
     flash({
+        sessionKeyName: 'flashMessage'
     
     })
-)
+);
 
 
 //Template Engine
@@ -54,6 +55,7 @@ app.use('/',require('./server/routes/customer'));
 app.get('*',(req,res)=>{
     res.status(404).render('404',);
 });
+
 
 
 app.listen(PORT,()=>{
