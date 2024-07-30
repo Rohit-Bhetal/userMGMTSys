@@ -39,7 +39,7 @@ Homepage
             }]).skip(perpage*page-perpage).limit(perpage).exec();
             const count = await Customer.countDocuments();
             res.render('index',{locals,messages,customers,
-                current:page,page:Math.ceil(count/perpage)
+                current:page,pages:Math.ceil(count/perpage)
             });
         } catch (error) {
             console.log(error);
@@ -93,4 +93,29 @@ exports.postCustomer =async (req,res)=>{
     }
     
     
+}
+
+
+/*
+*GET /
+*Customer Data
+*/
+exports.view = async (req,res) =>{
+    try {
+        const customer = await Customer.findOne({
+            _id:req.params.id
+        });
+        
+        const locals ={
+            title:'View',
+            description:'Custom View of User'
+        }
+        res.render('pages/view',{
+            locals,
+            customer
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
 }
