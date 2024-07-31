@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const expressEjsLayouts = require('express-ejs-layouts');
 const connectDB =require('./server/config/db');
-
+const methodOverride = require('method-override')
 const app = express();
 const PORT = 3030;
 const {flash} = require('express-flash-message');
@@ -17,7 +17,7 @@ app.use(express.urlencoded({
 }));
 
 app.use(express.json());
-
+app.use(methodOverride('_method'));
 //static files
 
 app.use(express.static('public'));

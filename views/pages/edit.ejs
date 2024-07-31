@@ -1,0 +1,63 @@
+<div class="d-flex justify-content-between flex-wrap flex-wrap flex-md nowrap align-item-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Edit </h1>
+    <div class="btn-toolbar mb-2 mb-md 0">
+        <div class="btn-group me-2 pe-1">
+            <button href="/add" class="btn btn-sm btn-outline-secondary">New User</button>
+        </div>
+    </div>
+</div>
+
+<div class="col py-3">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                    <li class="breadcrumb-item active"><%= customer.firstName %></li>
+                </ol>
+
+            </nav>
+        </div>
+        <div class="col text-end fw-lighter">
+            <b>UserId: </b> <%= customer._id %>
+            <br>
+            <b>Last Updated: </b> <%= new Date(customer.updatedAt).toUTCString() %>
+        </div>
+    </div>
+</div>
+
+<form action="/edit/<%= customer._id %>?_method=PUT" method="post">
+    <div class="row form-grou mb-4">
+        <div class="col">
+            <label for="FirstName">First Name</label>
+            <input type="text" class="form-control" id="FirstName" name="FirstName" value="<%= customer.firstName %>" placeholder="First Name" required>
+            
+        </div>
+        <div class="col">
+            <label for="LastName">Last Name</label>
+            <input type="text" class="form-control" id="LastName" name="LastName" value="<%= customer.lastName %>" placeholder="First Name" required>
+
+        </div>
+    </div>
+    <div class="row form-grou mb-4">
+        <div class="col">
+            <label for="tel">Telephone</label>
+            <input type="number" class="form-control" id="tel" name="tel" value="<%= customer.tel %>" placeholder="Telephone" required>
+            
+        </div>
+        <div class="col">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="<%= customer.email %>" placeholder="Email" required>
+
+        </div>
+    </div>
+    <div class="form-grou mb-4">
+        <label for="details">Customer Details</label>
+        <textarea class="form-control" name="details" value="<%= customer.details %>" cols="30" rows="12" id="details" placeholder="Customer Details"></textarea>
+    </div>
+    <div class="form-grou mb-4">
+        <button type="submit" class="btn btn-primary ">Update Customer</button>
+        <button type="submit" class="btn btn-primary ">Delete Customer</button>
+    </div>
+    
+</form>

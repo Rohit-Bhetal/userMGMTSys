@@ -119,3 +119,52 @@ exports.view = async (req,res) =>{
         console.log(error);
     }
 }
+
+/*
+*GET /
+*Edit Customer Data
+*/
+exports.edit = async (req,res) =>{
+    try {
+        const customer = await Customer.findOne({
+            _id:req.params.id
+        });
+        
+        const locals ={
+            title:'Edit',
+            description:'Custom View of User'
+        }
+        res.render('pages/edit',{
+            locals,
+            customer
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+/*
+*POST /
+*Edit Customer Data
+*/
+exports.editPost = async (req,res) =>{
+    try {
+        await Customer.findByIdAndUpdate(req.params.id,
+            {
+                firstName:req.body.FirstName,
+                lastName:req.body.LastName,
+                details:req.body.details,
+                tel:req.body.tel,
+                email:req.body.email,
+                updatedAt: Date.now()
+               
+            }
+        );
+
+        res.redirect(`/edit/${req.params.id}`);
+        console.log('Redirected');
+
+    } catch (error) {
+        console.log(error);
+    }
+}
