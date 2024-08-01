@@ -168,3 +168,44 @@ exports.editPost = async (req,res) =>{
         console.log(error);
     }
 }
+
+/**
+ * Delete /
+ * Delete Customer Data
+ */
+exports.deleteCustomer = async (req, res) => {
+    try {
+      await Customer.deleteOne({ _id: req.params.id });
+      res.redirect("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+/**
+ * GET /
+ * Search Customer Data
+ */
+exports.searchCustomer = async (req, res) => {
+    try {
+        let searchTerm = req.body.searchTerm;
+        const searchNoSpecialChar = searchTerm.replace(/{^a-zA-z0-9}/g,"");
+        const customers = await Customer.find({
+            $or:[
+                {firstName:{$regex : new RegExp(searchNoSpecialChar,"i")}},
+                {lastName:{$regex : new RegExp(searchNoSpecialChar,"i")}},
+            ]
+        });
+        const locals ={
+            title:'Search',
+            description:'Search User'
+        }
+
+        res.render("search",{
+            customers,
+            locals
+        })
+    } catch (error) {
+        
+    }
+  };
