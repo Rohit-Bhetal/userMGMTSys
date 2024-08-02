@@ -26,7 +26,7 @@ Homepage
     exports.homepage =async (req,res)=>{
         const messages = await req.consumeFlash('info')
         const locals ={
-            title:'NodeJs',
+            title:'UserMGMT',
             description:'Free User NodeJs Management System'
         }
         let perpage = 12;
@@ -209,3 +209,21 @@ exports.searchCustomer = async (req, res) => {
         
     }
   };
+
+  /*
+  GET/ ABOUT PAGE
+  */
+  exports.about =async (req,res)=>{
+    const locals ={
+        title:'About',
+        description:'About User NodeJs Management System'
+    }
+    try {
+        res.render('about',{locals});
+    } catch (error) {
+        console.log(error);
+    }
+    //res.send('Hello World')
+    
+    
+}
