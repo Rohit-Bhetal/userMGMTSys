@@ -1,6 +1,3 @@
-I apologize for the confusion. You're absolutely right - the content I provided earlier was not in proper markdown format. Let me convert that into proper GitHub-flavored markdown for you:
-
-```markdown
 <p align="center">
   <img src="https://img.icons8.com/?size=512&id=55494&format=png" width="100" />
 </p>
@@ -279,6 +276,6 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 ## 👏 Acknowledgments
 
 This project was inspired by various online tutorials and open-source projects. Special thanks to the Node.js, Express, and MongoDB communities for their resources and support.
-```
 
-This version is properly formatted in GitHub-flavored markdown. You can now copy and paste this directly into your README.md file on GitHub, and it should render correctly with all the formatting, tables, and collapsible sections intact.
+
+
